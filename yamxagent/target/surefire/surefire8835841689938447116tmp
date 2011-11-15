@@ -1,0 +1,5 @@
+#surefire
+#Tue Nov 15 00:52:30 IST 2011
+user.dir=/home/srikanth/eclipse/yamx/yamxagent
+localRepository=/home/srikanth/.m2/repository
+basedir=/home/srikanth/eclipse/yamx/yamxagent
