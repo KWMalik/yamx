@@ -1,0 +1,10 @@
+package com.srikanthps.yamx.proto;
+
+message SysInfo {
+  required string appName = 1;
+  required string hostname = 2;
+  required string ipAddr = 3;
+  optional string systemType = 4;
+  optional string osinfo = 5;
+}
+
