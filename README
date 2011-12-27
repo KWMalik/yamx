@@ -1,0 +1,14 @@
+             YAMX - Yet another management extension
+=====================================================================
+
+This project aims at providing cross-platform management extension
+that can be used primarily for monitoring health of applications and
+for viewing some vital stats.
+
+It will have 2 parts:
+
+1. YAMX Server - A web app that displays status of all the registered apps.
+2. YAMX Agent - An agent that runs within the apps and periodically publishes
+                heartbeat and vital stats to server
+
+
