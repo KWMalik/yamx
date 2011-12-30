@@ -1,58 +1,35 @@
 package com.srikanthps.yamxagent;
 
-import java.io.IOException;
-import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.handler.AbstractHandler;
-
-import com.srikanthps.yamx.proto.Yamx;
-
-public class Agent extends AbstractHandler {
-	public void handle(String target, Request baseRequest,
-			HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		response.setContentType("text/html;charset=utf-8");
-		response.setStatus(HttpServletResponse.SC_OK);
-		baseRequest.setHandled(true);
-
-		ObjectMapper m = new ObjectMapper();
-
-		Yamx.SysInfo info = Yamx.SysInfo.newBuilder().setAppName("TestApp")
-				.setSystemType(getAppInfo()).setOsinfo(getOsInfo())
-				.setIpAddr(InetAddress.getLocalHost().getHostAddress())
-				.setHostname(InetAddress.getLocalHost().getHostName()).build();
-
-		String s = "";// m.writeValueAsString(sy);
-
-		response.getWriter().println("<pre>" + info.toString() + "</pre>");
-
-		response.getWriter().println();
+public class Agent implements LifeCycle {
+	
+	private List<LifeCycle> actors;
+	
+	@Override
+	public void init() {
+		for (LifeCycle a : actors) {
+			a.init();
+		}
 	}
-
-	private String getOsInfo() {
-		return System.getProperty("os.name") + ", "
-				+ System.getProperty("os.arch")+ ", " + System.getProperty("os.version");
+	
+	@Override
+	public void destroy() {
+		for (LifeCycle a : actors) {
+			a.destroy();
+		}
 	}
-
-	private String getAppInfo() {
-		return System.getProperty("java.vm.name") + ", "
-				+ System.getProperty("java.vm.version") + ", "
-				+ System.getProperty("java.vm.vendor");
+	
+	public void setActors(List<LifeCycle> actors) {
+		this.actors = actors;
 	}
-
-	public static void main(String[] args) throws Exception {
-		Server server = new Server(8080);
-		server.setHandler(new Agent());
-
-		server.start();
-		server.join();
+	
+	public void setActors(LifeCycle... actors) {
+		this.actors = new ArrayList<LifeCycle>();
+		for (LifeCycle a : actors) {
+			this.actors.add(a);
+		}
 	}
-
 }
