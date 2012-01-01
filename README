@@ -12,3 +12,14 @@ It will have 2 parts:
                 heartbeat and vital stats to server
 
 
+
+Pre-requisites:
+1. rvm
+2. ruby 1.9.2 or jruby 1.6+
+3. sqlite
+	sudo apt-get install libsqlite3-dev
+
+4. Bundler gem
+5. Run "bundle install" to get other dependency gems.
+
+

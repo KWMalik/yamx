@@ -10,7 +10,7 @@ public abstract class AbstractPublisher implements LifeCycle {
 
 	private ScheduledExecutorService _scheduler;
 	private ScheduledFuture<?> publisherHandler;
-	private InfoBuilder builder = new InfoBuilder();
+	private InfoBuilder builder;
 	
 	@Override
 	public void init() {
@@ -33,7 +33,8 @@ public abstract class AbstractPublisher implements LifeCycle {
 		_scheduler.shutdown();
 	}
 	
-	public void setBuilder(InfoBuilder builder) {
+	public AbstractPublisher setBuilder(InfoBuilder builder) {
 		this.builder = builder;
+		return this;
 	}
 }

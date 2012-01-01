@@ -9,3 +9,6 @@
       of all your apps.  Its build using REST-style API integration between apps
       and the management server.
 
+    %h2 Currently known server and apps
+    - @list.each do |i|
+      %p= "#{i.app_name} running in  #{i.hostname}/#{i.ipaddr} "

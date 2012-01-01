@@ -10,7 +10,8 @@ public class TestApp {
 		
 		Agent a = new Agent();
 		
-		a.setActors(new ConsolePublisher(), new RestApiPublisher("http://localhost:9292"));
+		a.setActors(new ConsolePublisher().setBuilder(new InfoBuilder()), 
+				new RestApiPublisher("http://localhost:9292").setBuilder(new InfoBuilder()));
 		
 		a.init();
 		
