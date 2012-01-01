@@ -2,4 +2,4 @@ yamxagent/bin
 yamxagent/target
 yamx-java-model/bin
 yamx-java-model/target
-
+yamxserver/yamx.db
